@@ -4,51 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Woopy Fly — Your Music Platform</title>
-
-  <!-- SEO -->
-  <meta name="description" content="Woopy Fly — listen to music, create playlists, discover new artists.">
-  <meta name="keywords" content="music, playlist, tracks, artists, woopy fly">
-  <meta name="author" content="Woopy Fly">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://woopyfly.com/">
-
-  <!-- Open Graph (Telegram, Facebook, Discord) -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Woopy Fly — Your Music Platform">
-  <meta property="og:description" content="Listen to music, create playlists, discover new artists.">
-  <meta property="og:image" content="https://woopyfly.com/preview.png">
-  <meta property="og:url" content="https://woopyfly.com/">
-  <meta property="og:site_name" content="Woopy Fly">
-
-  <!-- Twitter/X -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Woopy Fly">
-  <meta name="twitter:description" content="Your music platform.">
-  <meta name="twitter:image" content="https://woopyfly.com/preview.png">
-
-  <!-- Фавікон -->
-  <link rel="icon" href="favicon.ico">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="icon-192.png">
-  <meta name="theme-color" content="#1a1a2e">
-
-  <!-- Schema.org для Google -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Woopy Fly",
-    "url": "https://woopyfly.com",
-    "description": "Music platform — listen, create playlists, discover artists.",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://woopyfly.com/search?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
-  }
-  </script>
-
+  <title>Woopy Fly</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -57,221 +13,150 @@
   <!-- ШАПКА -->
   <header class="header">
 
-    <div class="header__brand">
-      <a href="/" class="header__logo-link">
-        <img src="logo_woopyfly.png" alt="Woopy Fly logo" class="header__logo-img">
-        <span class="header__logo-text">Woopy fly</span>
-      </a>
-      <a href="/" class="header__home-link" aria-label="Home">
-        <img src="home-icon.png" alt="" aria-hidden="true" class="header__home-icon">
-        <span>home</span>
-      </a>
-    </div>
+    <a href="/" class="header__logo">
+      <img src="logo_woopyfly.png" alt="Woopy Fly" width="50" height="50">
+      <span>Woopy Fly</span>
+    </a>
 
-    <div class="header__search">
-      <label for="search-input" class="visually-hidden">Search music</label>
-      <input
-        id="search-input"
-        type="search"
-        placeholder="Search"
-        class="header__search-input"
-        autocomplete="off"
-        aria-label="Search tracks, artists, playlists"
-      >
-    </div>
+    <input type="search" id="search-input" class="header__search" placeholder="Search…" autocomplete="off">
 
-    <div class="header__user">
-      <a href="/profile" class="header__profile" aria-label="User profile">
-        <img src="avatar.png" alt="User avatar" class="header__avatar">
-        <span class="header__username">UserName</span>
-      </a>
-    </div>
+    <button type="button" id="btn-profile" class="header__profile">
+      <img src="avatar.png" alt="Profile" class="header__avatar">
+    </button>
 
   </header>
 
-  <!-- ОСНОВНИЙ ЛЕЙАУТ -->
+
+  <!-- ОСНОВНИЙ КОНТЕНТ -->
   <div class="layout">
 
-    <!-- ЛІВА ПАНЕЛЬ: бібліотека і плейлисти -->
-    <aside class="sidebar-left" aria-label="Your library">
+    <!-- ЛІВА ПАНЕЛЬ — бібліотека -->
+    <aside class="sidebar-left">
 
-      <nav class="library">
-        <ul class="library__list">
+      <ul class="library" id="playlist-list">
+        <!-- JS додає плейлісти сюди -->
+      </ul>
 
-          <li class="library__item">
-            <a href="/liked" class="library__link library__link--liked">
-              Liked songs
-            </a>
-          </li>
-
-          <!-- плейлисти додаються через JS -->
-          <li class="library__item">
-            <a href="/playlist/1" class="library__link" data-id="1">
-              &lt;&lt;added playlist&gt;&gt;
-            </a>
-          </li>
-          <li class="library__item">
-            <a href="/playlist/2" class="library__link" data-id="2">
-              &lt;&lt;added playlist&gt;&gt;
-            </a>
-          </li>
-          <li class="library__item">
-            <a href="/playlist/3" class="library__link" data-id="3">
-              &lt;&lt;added playlist&gt;&gt;
-            </a>
-          </li>
-          <li class="library__item">
-            <a href="/playlist/4" class="library__link" data-id="4">
-              &lt;&lt;added playlist&gt;&gt;
-            </a>
-          </li>
-          <li class="library__item">
-            <a href="/playlist/5" class="library__link" data-id="5">
-              &lt;&lt;added playlist&gt;&gt;
-            </a>
-          </li>
-
-        </ul>
-      </nav>
-
-      <button class="library__add-btn" aria-label="Create new playlist">
+      <button type="button" id="btn-new-playlist" class="btn-new-playlist">
         + New playlist
       </button>
 
     </aside>
 
-    <!-- ЦЕНТР: основний контент -->
-    <main class="main-content" id="main" aria-label="Main content">
-      <h1 class="main-content__title">Tracks for you</h1>
 
-      <div class="track-grid" role="list" aria-label="Recommended tracks">
+    <!-- ГОЛОВНА ЧАСТИНА — список треків -->
+    <main class="main-content">
 
-        <!-- шаблон одного треку (потім заповниш через JS або вручну) -->
-        <article class="track-card" role="listitem"
-          data-id="track-001"
-          data-src="tracks/song1.mp3"
-          data-duration="214">
-          <figure class="track-card__cover">
-            <img src="covers/cover1.jpg" alt="Track name cover" loading="lazy">
-          </figure>
-          <div class="track-card__info">
-            <h3 class="track-card__title">Track name</h3>
-            <p class="track-card__artist">Artist</p>
-            <time class="track-card__duration" datetime="PT3M34S">3:34</time>
-          </div>
-          <button class="track-card__play-btn" aria-label="Play Track name">▶</button>
-        </article>
+      <h1>Tracks for you</h1>
 
+      <div class="track-grid" id="track-grid">
+        <!-- JS додає картки треків сюди -->
       </div>
+
     </main>
 
-    <!-- ПРАВА ПАНЕЛЬ: зараз грає -->
-    <aside class="sidebar-right" aria-label="Now playing">
 
-      <div class="now-playing">
-        <figure class="now-playing__cover">
-          <img src="covers/cover1.jpg" alt="Current track cover" id="now-cover">
-        </figure>
+    <!-- ПРАВА ПАНЕЛЬ — зараз грає -->
+    <aside class="sidebar-right">
 
-        <div class="now-playing__info">
-          <h2 class="now-playing__title" id="now-title">Title</h2>
-          <p class="now-playing__artist" id="now-artist">Artist</p>
-          <details class="now-playing__credits">
-            <summary>Credits</summary>
-            <p id="now-credits">Produced by: —</p>
-          </details>
-        </div>
-
-      </div>
+      <img src="" alt="" id="now-cover" class="now-playing__cover">
+      <h2 id="now-title">—</h2>
+      <p  id="now-artist">—</p>
 
     </aside>
 
   </div>
 
-  <!-- ФІКСОВАНИЙ ПЛЕЄР -->
-  <div class="player-bar" role="region" aria-label="Music player">
+
+  <!-- ПЛЕЄР -->
+  <div class="player-bar">
 
     <audio id="audio-player" preload="none"></audio>
 
+    <!-- Інфо про трек -->
     <div class="player-bar__track">
-      <img src="" alt="" class="player-bar__mini-cover" id="player-cover">
+      <img src="" alt="" id="player-cover" class="player-bar__cover" width="48" height="48">
       <div>
-        <span class="player-bar__track-name" id="player-title">—</span>
-        <span class="player-bar__track-artist" id="player-artist">—</span>
+        <span id="player-title">—</span>
+        <span id="player-artist">—</span>
       </div>
+      <button type="button" id="btn-like" aria-pressed="false">♥</button>
     </div>
 
+    <!-- Кнопки керування -->
     <div class="player-bar__controls">
-      <button class="player-btn" id="btn-prev" aria-label="Previous track">⏮</button>
-      <button class="player-btn" id="btn-back" aria-label="Rewind">◀</button>
-      <button class="player-btn player-btn--play" id="btn-play" aria-label="Play">▶</button>
-      <button class="player-btn" id="btn-next" aria-label="Next track">⏭</button>
-      <button class="player-btn" id="btn-shuffle" aria-label="Shuffle" aria-pressed="false">⇄</button>
-      <button class="player-btn" id="btn-repeat" aria-label="Repeat" aria-pressed="false">↺</button>
+      <button type="button" id="btn-shuffle" aria-pressed="false">⇄</button>
+      <button type="button" id="btn-prev">⏮</button>
+      <button type="button" id="btn-play"  aria-pressed="false">▶</button>
+      <button type="button" id="btn-next">⏭</button>
+      <button type="button" id="btn-repeat" aria-pressed="false">↺</button>
     </div>
 
+    <!-- Прогрес -->
     <div class="player-bar__progress">
-      <time class="player-bar__time" id="time-current">0:00</time>
-      <input type="range" id="progress-bar" min="0" max="100" value="0" aria-label="Track progress">
-      <time class="player-bar__time" id="time-total">0:00</time>
+      <span id="time-current">0:00</span>
+      <input type="range" id="progress-bar" min="0" max="100" value="0">
+      <span id="time-total">0:00</span>
+    </div>
+
+    <!-- Гучність -->
+    <div class="player-bar__volume">
+      <button type="button" id="btn-mute">🔊</button>
+      <input type="range" id="volume-bar" min="0" max="100" value="80">
     </div>
 
   </div>
 
-  <!-- НИЖНЯ НАВІГАЦІЯ (мобайл) -->
+
+  <!-- ПІДВАЛ -->
   <footer class="site-footer">
-    <nav class="bottom-nav" aria-label="Main navigation">
-      <a href="/" class="bottom-nav__link" aria-label="Home">
-        <span class="bottom-nav__icon" aria-hidden="true">🏠</span>
-        <span class="bottom-nav__label">Home</span>
-      </a>
-      <a href="/search" class="bottom-nav__link" aria-label="Search">
-        <span class="bottom-nav__icon" aria-hidden="true">🔍</span>
-        <span class="bottom-nav__label">Search</span>
-      </a>
-      <a href="/library" class="bottom-nav__link" aria-label="Library">
-        <span class="bottom-nav__icon" aria-hidden="true">📚</span>
-        <span class="bottom-nav__label">Library</span>
-      </a>
-      <a href="/create" class="bottom-nav__link" aria-label="Create">
-        <span class="bottom-nav__icon" aria-hidden="true">➕</span>
-        <span class="bottom-nav__label">Create</span>
-      </a>
-    </nav>
-
-    <small class="site-footer__copy">
-      &copy; 2025 WoopyFly. All rights reserved.
-    </small>
-
+    <small>&copy; 2025 WoopyFly</small>
   </footer>
 
-  <!-- шаблон для JS: клонується коли додається новий трек -->
-  <template id="track-template">
-    <article class="track-card" role="listitem">
-      <figure class="track-card__cover">
-        <img src="" alt="" loading="lazy">
-      </figure>
+
+  <!-- ШАБЛОНИ (JS бере звідси і клонує) -->
+
+  <template id="track-card-template">
+    <article class="track-card">
+      <img src="" alt="" loading="lazy" width="80" height="80">
       <div class="track-card__info">
         <h3 class="track-card__title"></h3>
-        <p class="track-card__artist"></p>
-        <time class="track-card__duration"></time>
+        <p  class="track-card__artist"></p>
+        <span class="track-card__duration"></span>
       </div>
-      <button class="track-card__play-btn" aria-label="Play">▶</button>
+      <button type="button" class="track-card__play-btn">▶</button>
     </article>
   </template>
 
-  <!-- модалка для створення плейлиста -->
-  <dialog id="modal-playlist" class="modal" aria-labelledby="modal-title">
-    <h2 id="modal-title">New Playlist</h2>
+  <template id="playlist-item-template">
+    <li class="library__item">
+      <a href="" class="library__link">
+        <span class="library__playlist-name"></span>
+      </a>
+    </li>
+  </template>
+
+
+  <!-- ДІАЛОГ — новий плейліст -->
+  <dialog id="dialog-new-playlist">
+
+    <h2>New Playlist</h2>
+
     <label for="playlist-name">Name</label>
-    <input id="playlist-name" type="text" placeholder="My playlist" maxlength="50">
-    <div class="modal__actions">
-      <button onclick="document.getElementById('modal-playlist').close()">Cancel</button>
-      <button id="modal-create-btn">Create</button>
+    <input type="text" id="playlist-name" placeholder="My playlist" maxlength="50">
+
+    <div class="dialog-actions">
+      <button type="button" id="dialog-cancel">Cancel</button>
+      <button type="button" id="dialog-create">Create</button>
     </div>
+
   </dialog>
 
-  <script src="main.js" defer></script>
+
+  <!-- СКРИПТИ -->
+  <script src="js/player.js"   type="module"></script>
+  <script src="js/playlist.js" type="module"></script>
+  <script src="js/ui.js"       type="module"></script>
 
 </body>
 </html>
