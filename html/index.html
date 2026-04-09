@@ -10,7 +10,6 @@
 
 <body>
 
-  <!-- ШАПКА -->
   <header class="header">
 
     <a href="/" class="header__logo">
@@ -27,14 +26,11 @@
   </header>
 
 
-  <!-- ОСНОВНИЙ КОНТЕНТ -->
   <div class="layout">
 
-    <!-- ЛІВА ПАНЕЛЬ — бібліотека -->
     <aside class="sidebar-left">
 
       <ul class="library" id="playlist-list">
-        <!-- JS додає плейлісти сюди -->
       </ul>
 
       <button type="button" id="btn-new-playlist" class="btn-new-playlist">
@@ -44,19 +40,15 @@
     </aside>
 
 
-    <!-- ГОЛОВНА ЧАСТИНА — список треків -->
     <main class="main-content">
 
       <h1>Tracks for you</h1>
 
       <div class="track-grid" id="track-grid">
-        <!-- JS додає картки треків сюди -->
       </div>
 
     </main>
 
-
-    <!-- ПРАВА ПАНЕЛЬ — зараз грає -->
     <aside class="sidebar-right">
 
       <img src="" alt="" id="now-cover" class="now-playing__cover">
@@ -68,12 +60,10 @@
   </div>
 
 
-  <!-- ПЛЕЄР -->
   <div class="player-bar">
 
     <audio id="audio-player" preload="none"></audio>
 
-    <!-- Інфо про трек -->
     <div class="player-bar__track">
       <img src="" alt="" id="player-cover" class="player-bar__cover" width="48" height="48">
       <div>
@@ -83,7 +73,6 @@
       <button type="button" id="btn-like" aria-pressed="false">♥</button>
     </div>
 
-    <!-- Кнопки керування -->
     <div class="player-bar__controls">
       <button type="button" id="btn-shuffle" aria-pressed="false">⇄</button>
       <button type="button" id="btn-prev">⏮</button>
@@ -92,14 +81,12 @@
       <button type="button" id="btn-repeat" aria-pressed="false">↺</button>
     </div>
 
-    <!-- Прогрес -->
     <div class="player-bar__progress">
       <span id="time-current">0:00</span>
       <input type="range" id="progress-bar" min="0" max="100" value="0">
       <span id="time-total">0:00</span>
     </div>
 
-    <!-- Гучність -->
     <div class="player-bar__volume">
       <button type="button" id="btn-mute">🔊</button>
       <input type="range" id="volume-bar" min="0" max="100" value="80">
@@ -108,13 +95,11 @@
   </div>
 
 
-  <!-- ПІДВАЛ -->
   <footer class="site-footer">
     <small>&copy; 2025 WoopyFly</small>
   </footer>
 
 
-  <!-- ШАБЛОНИ (JS бере звідси і клонує) -->
 
   <template id="track-card-template">
     <article class="track-card">
@@ -137,7 +122,6 @@
   </template>
 
 
-  <!-- ДІАЛОГ — новий плейліст -->
   <dialog id="dialog-new-playlist">
 
     <h2>New Playlist</h2>
@@ -153,7 +137,6 @@
   </dialog>
 
 
-  <!-- СКРИПТИ -->
   <script src="js/player.js"   type="module"></script>
   <script src="js/playlist.js" type="module"></script>
   <script src="js/ui.js"       type="module"></script>
